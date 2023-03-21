@@ -456,7 +456,7 @@ class _RegisterPageState extends State<RegisterPage> {
                           landState.villageSelect == null ||
                           phone.text.trim() == "")
                         {
-                          DiaLogApp().warningregisterDialog(context)
+                          DiaLogApp().pleaseenteralltextDialog(context)
                         }
                       else
                         {

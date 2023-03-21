@@ -6,15 +6,17 @@ import 'package:cit_academy_app/widgets/detail_dialog.dart';
 import 'package:flutter/material.dart';
 
 class DiaLogApp{
-  warningDialog(BuildContext context) {
+  warningDialog(BuildContext context, String message) {
+    Size size = MediaQuery.of(context).size;
+    double fontsize = size.width + size.height;
     showDialog(
         barrierColor: Colors.transparent,
         context: context,
         builder: (builder) {
-          return  DetailDialog(text: 'ມີບາງຢ່າງຜິດພາດກະລຸນາລອງອີກຄັ້ງ', icon: Icons.warning,iconcolor: AppColor().mainColor,);
+          return  DetailDialog(text: message, icon: Icons.warning,iconsize: fontsize*0.05,iconcolor: AppColor().mainColor,);
         });
   }
-  warningregisterDialog(BuildContext context) {
+  pleaseenteralltextDialog(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     double fontsize = size.width + size.height;
     showDialog(
@@ -41,7 +43,7 @@ class DiaLogApp{
         barrierColor: Colors.transparent,
         context: context,
         builder: (builder) {
-          return  DetailDialog(text: message,fontsize: fontsize*0.02, icon: Icons.check_circle,iconsize: fontsize*0.05, iconcolor: Colors.green,);
+          return  DetailDialog(text: message,fontsize: fontsize*0.02, icon: Icons.check_circle_outline,iconsize: fontsize*0.05, iconcolor: Colors.green,);
         });
   }
    loginfailedDialog(BuildContext context) {
@@ -63,7 +65,7 @@ class DiaLogApp{
             content: Column(
               mainAxisSize: MainAxisSize.min,
               children: const  [
-                CustomWidget(text: 'ກະລຸນາລໍຖ້າ ...', color: Colors.grey,fontSize: 16,fontWeight: FontWeight.w200,),
+                CustomWidget(text: 'ກະລຸນາລໍຖ້າ ...',color: Colors.black, fontSize: 16,fontWeight: FontWeight.w200,),
                SizedBox(
                   height: 10,
                 ),

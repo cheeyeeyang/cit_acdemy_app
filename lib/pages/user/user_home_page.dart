@@ -21,10 +21,11 @@ class _UserHomePageState extends State<UserHomePage> {
   List<Widget> page = [
     GetBuilder<RegisterState>(
       builder: (get) {
-        if(get.userModel?.roleId ==1){
+        if(get.userModel?.roleId !=3){
            return const AdminHomePage();
+        }else{
+          return  const DashboardStudentPage();
         }
-       return  const DashboardStudentPage();
       }
     ),
     const ProfileUserPage()
@@ -78,7 +79,7 @@ class _UserHomePageState extends State<UserHomePage> {
                                                 image: const DecorationImage(
                                                     fit: BoxFit.cover,
                                                     image: AssetImage(
-                                                        "images/yard.jpg"))),
+                                                        "images/avatar.jpg"))),
                                           ),
                                           Positioned(
                                               bottom: 0,

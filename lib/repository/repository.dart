@@ -6,7 +6,7 @@ import 'package:http/http.dart' as http;
 class Repository {
   //List api
   // String url = 'https://50d5-183-182-110-130.ap.ngrok.io/';
-  String url = 'http://127.0.0.1:8000/';
+  String url = 'http://192.168.43.75:8000/';
   String register = 'api/register';
   String login = 'api/login';
   String logout = 'api/logout';
@@ -15,12 +15,20 @@ class Repository {
   String village = 'api/village/';
   String role = 'api/role';
   String user = 'api/user';
+  String updateuser = 'api/update/user';
   String position = 'api/position';
+  String updateposition = 'api/update/position';
   String getposition = 'api/getposition';
   String getstudentRegister = 'api/getcountregister';
   String getstudent = 'api/getstudent';
   String getcountuser = 'api/getcountuser';
   String payment = 'api/payment';
+  String getstudentpayment = 'api/getstudentpayment';
+  String getexpense = 'api/getexpense';
+  String updateexpense = 'api/updateexpense';
+  String addexpense = 'api/addexpense';
+  String getsumincome = 'api/get_sum_income';
+  String getsumexpense = 'api/get_sum_expense';
   AppVerification appVerification = Get.put(AppVerification());
   Future<http.Response> get(
       {required String url, Map<String, String>? header, bool? auth}) async {
@@ -38,13 +46,14 @@ class Repository {
         return http.Response("Error", 408);
       });
       if (res.statusCode == 401) {
-        // appVerification.storage.erase();
+       // appVerification.storage.erase();
         return res;
       }
       return res;
     } catch (e) {
       // please comment print line before release
-      // print(e);
+      // ignore: avoid_print
+      print(e);
       return http.Response("error", 503);
     }
   }
@@ -69,7 +78,7 @@ class Repository {
         return http.Response("Error", 408);
       });
       if (res.statusCode == 401) {
-        // appVerification.storage.erase();
+       // appVerification.storage.erase();
         return res;
       }
       return res;
@@ -101,7 +110,8 @@ class Repository {
       return res;
     } catch (e) {
       // please comment print line before release
-      // print(e);
+       // ignore: avoid_print
+       print(e);
       return http.Response("error", 503);
     }
   }

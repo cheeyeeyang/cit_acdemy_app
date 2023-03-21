@@ -14,8 +14,13 @@ class UserModel {
   int? roleId;
   String? note;
   String? status;
+  String? email;
+  String? emailVerifiedAt;
   String? createdAt;
   String? updatedAt;
+  String? province;
+  String? district;
+  String? village;
 
   UserModel(
       {this.id,
@@ -33,8 +38,13 @@ class UserModel {
       this.roleId,
       this.note,
       this.status,
+      this.email,
+      this.emailVerifiedAt,
       this.createdAt,
-      this.updatedAt});
+      this.updatedAt,
+      this.province,
+      this.district,
+      this.village});
 
   UserModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -52,8 +62,13 @@ class UserModel {
     roleId = json['role_id'];
     note = json['note'];
     status = json['status'];
+    email = json['email'];
+    emailVerifiedAt = json['email_verified_at'];
     createdAt = json['created_at'];
     updatedAt = json['updated_at'];
+    province = json['province'];
+    district = json['district'];
+    village = json['village'];
   }
 
   // Map<String, dynamic> toJson() {
@@ -73,8 +88,13 @@ class UserModel {
   //   data['role_id'] = this.roleId;
   //   data['note'] = this.note;
   //   data['status'] = this.status;
+  //   data['email'] = this.email;
+  //   data['email_verified_at'] = this.emailVerifiedAt;
   //   data['created_at'] = this.createdAt;
   //   data['updated_at'] = this.updatedAt;
+  //   data['province'] = this.province;
+  //   data['district'] = this.district;
+  //   data['village'] = this.village;
   //   return data;
   // }
 }

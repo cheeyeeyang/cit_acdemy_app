@@ -20,7 +20,7 @@ class _AdminSettingPageState extends State<AdminSettingPage> {
     double height = MediaQuery.of(context).size.height;
     double fontsize = width + height;
     return DefaultTabController(
-        length: 4,
+        length: 3,
         child: Scaffold(
           appBar: AppBar(
         title:  CustomWidget(

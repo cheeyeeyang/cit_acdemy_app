@@ -109,7 +109,7 @@ class RegisterState extends GetxController {
         print('register success');
       } else {
         Navigator.pop(context);
-        DiaLogApp().warningDialog(context);
+        DiaLogApp().warningDialog(context, jsonDecode(res.body)['message']);
         checkRegister = false;
         update();
         print('register Fail');

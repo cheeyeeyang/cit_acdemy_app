@@ -264,7 +264,7 @@ class _FromPaymentPageState extends State<FromPaymentPage> {
                           amount.text.trim() == "" ||
                           year == "" ||
                           month == "")
-                        {DiaLogApp().warningregisterDialog(context)}
+                        {DiaLogApp().pleaseenteralltextDialog(context)}
                       else
                         {
                           paymentState.savePayment(

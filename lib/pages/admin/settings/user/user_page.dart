@@ -1,12 +1,13 @@
 // ignore_for_file: non_constant_identifier_names
-import 'package:cit_academy_app/models/get_user_model.dart';
+
+import 'package:cit_academy_app/pages/admin/settings/position/position_add_page.dart';
 import 'package:cit_academy_app/pages/admin/settings/user/user_add_page.dart';
-import 'package:cit_academy_app/pages/admin/settings/user/user_edit.dart';
+import 'package:cit_academy_app/statemanagement/position_state.dart';
 import 'package:cit_academy_app/statemanagement/user_state.dart';
 import 'package:cit_academy_app/widgets/custom_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
+import 'package:intl/intl.dart';
 class UserPage extends StatefulWidget {
   const UserPage({super.key});
   @override
@@ -14,6 +15,12 @@ class UserPage extends StatefulWidget {
 }
 
 class _UserPageState extends State<UserPage> {
+  getCustomFormattedDateTime(String givenDateTime, String dateFormat) {
+    // dateFormat = 'MM/dd/yy';
+    final DateTime docDateTime = DateTime.parse(givenDateTime);
+    return DateFormat(dateFormat).format(docDateTime);
+  }
+
   UserState userState = Get.put(UserState());
   @override
   void initState() {
@@ -21,31 +28,9 @@ class _UserPageState extends State<UserPage> {
     super.initState();
   }
 
-  void onSelected(BuildContext context, int item, GetUserModel model) {
-    switch (item) {
-      case 0:
-        // Navigator.of(context).push(
-        //   MaterialPageRoute(builder: (context) => Bill_PDF()),
-        // );
-        break;
-      case 1:
-       Navigator.of(context).push(
-          MaterialPageRoute(builder: (context) => UserEditPage(user: model,)),
-        );
-        break;
-      case 2:
-        // Navigator.of(context).push(
-        //   MaterialPageRoute(builder: (context) => Bill_Delete()),
-        // );
-        break;
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
-    double height = MediaQuery.of(context).size.height;
-    double fontsize = width + height;
     return Scaffold(
         backgroundColor: Colors.yellow[50],
         body: Padding(
@@ -73,12 +58,12 @@ class _UserPageState extends State<UserPage> {
               const SizedBox(
                 height: 10,
               ),
-              Expanded(
-                child: GetBuilder<UserState>(builder: (get) {
-                  if (get.check == false) {
-                    return const Center(child: CircularProgressIndicator());
-                  }
-                  return ListView.builder(
+              GetBuilder<UserState>(builder: (get) {
+                if(get.check == false){
+                  return const Center(child: CircularProgressIndicator(),);
+                }
+                return Expanded(
+                  child: ListView.builder(
                       itemCount: get.searchuser.length,
                       itemBuilder: (context, index) {
                         return Card(
@@ -86,75 +71,33 @@ class _UserPageState extends State<UserPage> {
                           elevation: 4,
                           child: ListTile(
                             title: CustomWidget(
-                                text: get.searchuser[index].firstname
-                                        .toString() +
-                                    get.searchuser[index].lastname.toString()),
-                            subtitle: Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                CustomWidget(
-                                  text: get.searchuser[index].phone.toString(),
-                                  color: Colors.grey,
-                                ),
-                                CustomWidget(
-                                  text:
-                                      get.searchuser[index].address.toString(),
-                                  color: Colors.grey,
-                                )
-                              ],
+                                text: get.searchuser[index].firstname.toString() ??
+                                    ""),
+                            subtitle: CustomWidget(
+                              text: get.searchuser[index].createdDate.toString(),
+                              color: Colors.grey,
                             ),
-                            trailing: PopupMenuButton<int>(
-                                onSelected: (item) => onSelected(
-                                    context, item, get.searchuser[index]),
-                                itemBuilder: (context) => [
-                                      PopupMenuItem<int>(
-                                          value: 0,
-                                          child: Row(
-                                            children: const <Widget>[
-                                              Padding(
-                                                padding: EdgeInsets.all(5.0),
-                                                child: Icon(Icons.person),
-                                              ),
-                                              Text("ລາຍລະອຽດ")
-                                            ],
-                                          )),
-                                      PopupMenuItem<int>(
-                                          value: 1,
-                                          child: Row(
-                                            children: const <Widget>[
-                                              Padding(
-                                                padding: EdgeInsets.all(5.0),
-                                                child: Icon(Icons.edit),
-                                              ),
-                                              Text("ແກ້ໄຂ")
-                                            ],
-                                          )),
-                                      PopupMenuItem<int>(
-                                          value: 2,
-                                          child: Row(
-                                            children: const <Widget>[
-                                              Padding(
-                                                padding: EdgeInsets.all(5.0),
-                                                child: Icon(Icons.delete),
-                                              ),
-                                              Text("ລຶບ")
-                                            ],
-                                          ))
-                                    ]),
+                            trailing:  InkWell(
+                              onTap: () => {
+                                userState.showedit(get.searchuser[index]),
+                                Navigator.of(context).push(MaterialPageRoute(builder: (context) => const UserAddPage()))
+                              },
+                              child: const Icon(Icons.edit)),
                           ),
                         );
-                      });
-                }),
-              ),
+                      }),
+                );
+              }),
             ],
           ),
         ),
         floatingActionButton: FloatingActionButton(
           child: const Icon(Icons.add),
           onPressed: () {
-            Navigator.push(context,
-                MaterialPageRoute(builder: (context) => const UserAddPage()));
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => const UserAddPage()));
           },
         ));
   }

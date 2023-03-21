@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:cit_academy_app/models/get_user_model.dart';
 import 'package:cit_academy_app/models/land_model.dart';
 import 'package:cit_academy_app/repository/repository.dart';
 import 'package:get/get.dart';
@@ -15,7 +16,7 @@ class LandState extends GetxController {
   DistrictsModel? districtSelect;
   VillagesModel? villageSelect;
   PositionModel? positionSelect;
-  SelectRoleModel ? selectRoleSelect;
+  SelectRoleModel? selectRoleSelect;
 
   //for check when fecth data from database
   bool checkDataAllLand = false;
@@ -27,7 +28,8 @@ class LandState extends GetxController {
     getRole();
     update();
   }
- getPosition() async {
+
+  getPosition() async {
     allPositions = [];
     update();
     var res = await repository.get(
@@ -50,8 +52,8 @@ class LandState extends GetxController {
   getRole() async {
     allselectroles = [];
     update();
-    var res = await repository.get(
-        url: repository.url + repository.role, auth: true);
+    var res =
+        await repository.get(url: repository.url + repository.role, auth: true);
     if (res.statusCode == 200) {
       for (var element in jsonDecode(res.body)['data']) {
         allselectroles.add(SelectRoleModel.fromMap(element));
@@ -184,9 +186,32 @@ class LandState extends GetxController {
     checkDataAllLand = true;
     update();
   }
+
   @override
   void onInit() {
     getAllLand();
     super.onInit();
+  }
+
+  setAddress(GetUserModel? userModel) async {
+    await getAllLand();
+    var getprovince = allProvinces.firstWhereOrNull(
+      (element) => element.id == userModel?.proId,
+    );
+    if (getprovince != null) {
+      updateDropDownProvince(getprovince);
+    }
+     var getdistrict = allDistricts.firstWhereOrNull(
+      (element) => element.id == userModel?.disId,
+    );
+    if (getdistrict != null) {
+      updateDropDownDistrict(getdistrict);
+    }
+     var getvillage = allVillages.firstWhereOrNull(
+      (element) => element.id == userModel?.villId,
+    );
+    if (getvillage != null) {
+      updateDropDownVillage(getvillage);
+    }
   }
 }

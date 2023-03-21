@@ -145,7 +145,7 @@ class _LoginPageState extends State<LoginPage> {
                   InkWell(
                       onTap: (() => {
                            if(phoneT.text.trim() =="" || passwordT.text.trim() == ""){
-                             DiaLogApp().warningregisterDialog(context)
+                             DiaLogApp().pleaseenteralltextDialog(context)
                            }else{
                               registerState.postSignIn(context: context, phone: phoneT.text, password: passwordT.text)
                            }

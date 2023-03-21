@@ -1,3 +1,5 @@
+import 'package:cit_academy_app/customs/app_color.dart';
+import 'package:cit_academy_app/widgets/button_widget.dart';
 import 'package:cit_academy_app/widgets/custom_widget.dart';
 import 'package:flutter/material.dart';
 
@@ -32,14 +34,17 @@ class DetailDialog extends StatelessWidget {
                  const SizedBox(
                   height: 10,
                  ),
-                 CustomWidget(text: text, fontSize: fontsize,color: color,fontWeight: fontWeight,)
+                 CustomWidget(text: text, fontSize: fontsize,color: color,fontWeight: fontWeight,),
+                  const SizedBox(
+                  height: 10,
+                 ),
+                 InkWell(
+                  onTap: () => {
+                    Navigator.pop(context)
+                  },
+                  child: ButtonWidget(text: 'OK', width: MediaQuery.of(context).size.width, height: 40,fontWeight: FontWeight.bold,fontSize: 20, color: Colors.white, borderRadius: 5.0,backgroundcolor: AppColor().mainColor,))
               ],
             ),
-            actions: [
-              TextButton(onPressed: (){
-                Navigator.pop(context);
-              }, child: const Text('ປິດ'))
-            ],
           );
   }
 }

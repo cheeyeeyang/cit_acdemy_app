@@ -2,6 +2,7 @@
 
 import 'dart:convert';
 import 'package:cit_academy_app/models/get_student_model.dart';
+import 'package:cit_academy_app/models/payment_model.dart';
 import 'package:cit_academy_app/pages/admin/bill_page.dart';
 import 'package:cit_academy_app/repository/repository.dart';
 import 'package:cit_academy_app/widgets/dialog_app.dart';
@@ -13,10 +14,12 @@ import '../models/bill_model.dart';
 class PaymentState extends GetxController {
   List<GetStudentModel> data = [];
   List<GetStudentModel> searchdata = [];
+  List<PaymentModel> paymentList = [];
   Repository repository = Repository();
   BillModel? billModel;
   bool checkBill = false;
   bool check = false;
+  bool checkPayment = false;
   getData() async {
     try {
       data = [];
@@ -31,11 +34,9 @@ class PaymentState extends GetxController {
         searchdata = data;
         check = true;
         update();
-        // ignore: avoid_print
         print('get data success');
       } else {
         check = false;
-        // ignore: avoid_print
         print('get data failed');
       }
     } catch (ex) {
@@ -91,6 +92,28 @@ class PaymentState extends GetxController {
       }
     } catch (e) {
       print(e);
+    }
+  }
+
+  getPayment() async {
+    try {
+      var res = await repository.get(
+          url: repository.url + repository.getstudentpayment, auth: true);
+      if (res.statusCode == 200) {
+        paymentList = [];
+        update();
+        for (var item in jsonDecode(res.body)['data']) {
+          paymentList.add(PaymentModel.fromJson(item));
+        }
+        checkPayment = true;
+        update();
+        print('get studentpayment success');
+      } else {
+        checkPayment = false;
+        print('get studentpayment failed');
+      }
+    } catch (ex) {
+      print(ex);
     }
   }
 }

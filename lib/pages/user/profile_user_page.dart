@@ -1,6 +1,5 @@
 import 'package:cit_academy_app/customs/app_color.dart';
 import 'package:cit_academy_app/statemanagement/register_state.dart';
-import 'package:cit_academy_app/widgets/button_widget.dart';
 import 'package:cit_academy_app/widgets/custom_widget.dart';
 import 'package:cit_academy_app/widgets/responsive.dart';
 import 'package:flutter/material.dart';
@@ -51,6 +50,9 @@ class _ProfileUserPageState extends State<ProfileUserPage> {
           phoneT.text = '${get.userModel?.phone.toString()}';
           addressT.text = '${get.userModel?.address.toString()}';
           noteT.text = '${get.userModel?.note.toString()}';
+          villageT.text = '${get.userModel?.village.toString()}';
+          districtT.text = '${get.userModel?.district.toString()}';
+          provinceT.text = '${get.userModel?.province.toString()}';
           return Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -89,7 +91,7 @@ class _ProfileUserPageState extends State<ProfileUserPage> {
                                       image: const DecorationImage(
                                           fit: BoxFit.cover,
                                           image:
-                                              AssetImage("images/yard.jpg"))),
+                                              AssetImage("images/avatar.jpg"))),
                                 ),
                                 Positioned(
                                     bottom: 0,
@@ -132,17 +134,12 @@ class _ProfileUserPageState extends State<ProfileUserPage> {
                   SizedBox(
                     height: h * 0.06,
                     child: TextField(
+                      readOnly: true,
                       controller: firstnameT,
                       decoration: InputDecoration(
                         contentPadding: const EdgeInsets.symmetric(
                             vertical: 10, horizontal: 20),
                         hintText: 'ຊື່',
-                        suffixIcon: firstnameT.text.isEmpty
-                            ? Container(width: 0)
-                            : IconButton(
-                                icon: const Icon(Icons.close),
-                                onPressed: () => firstnameT.clear(),
-                              ),
                         enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(
                               width: 1.5, color: AppColor().thirdColor),
@@ -172,6 +169,7 @@ class _ProfileUserPageState extends State<ProfileUserPage> {
                   SizedBox(
                     height: h * 0.06,
                     child: TextField(
+                       readOnly: true,
                       controller: lastnameT,
                       onChanged: (value) => setState(() => password = value),
                       onSubmitted: (value) => setState(() => password = value),
@@ -179,12 +177,6 @@ class _ProfileUserPageState extends State<ProfileUserPage> {
                         contentPadding: const EdgeInsets.symmetric(
                             vertical: 10, horizontal: 20),
                         hintText: 'ນາມສະກຸນ',
-                        suffixIcon: lastnameT.text.isEmpty
-                            ? Container(width: 0)
-                            : IconButton(
-                                icon: const Icon(Icons.close),
-                                onPressed: () => lastnameT.clear(),
-                              ),
                         enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(
                               width: 1.5, color: AppColor().thirdColor),
@@ -214,6 +206,7 @@ class _ProfileUserPageState extends State<ProfileUserPage> {
                   SizedBox(
                     height: h * 0.06,
                     child: TextField(
+                       readOnly: true,
                       controller: bodT,
                       onChanged: (value) => setState(() => password = value),
                       onSubmitted: (value) => setState(() => password = value),
@@ -221,12 +214,6 @@ class _ProfileUserPageState extends State<ProfileUserPage> {
                         contentPadding: const EdgeInsets.symmetric(
                             vertical: 10, horizontal: 20),
                         hintText: 'ວັນເດືອນປີເກີດ',
-                        suffixIcon: bodT.text.isEmpty
-                            ? Container(width: 0)
-                            : IconButton(
-                                icon: const Icon(Icons.close),
-                                onPressed: () => bodT.clear(),
-                              ),
                         enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(
                               width: 1.5, color: AppColor().thirdColor),
@@ -256,6 +243,7 @@ class _ProfileUserPageState extends State<ProfileUserPage> {
                   SizedBox(
                     height: h * 0.06,
                     child: TextField(
+                       readOnly: true,
                       controller: phoneT,
                       onChanged: (value) => setState(() => password = value),
                       onSubmitted: (value) => setState(() => password = value),
@@ -263,12 +251,6 @@ class _ProfileUserPageState extends State<ProfileUserPage> {
                         contentPadding: const EdgeInsets.symmetric(
                             vertical: 10, horizontal: 20),
                         hintText: 'ເບີໂທ',
-                        suffixIcon: phoneT.text.isEmpty
-                            ? Container(width: 0)
-                            : IconButton(
-                                icon: const Icon(Icons.close),
-                                onPressed: () => phoneT.clear(),
-                              ),
                         enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(
                               width: 1.5, color: AppColor().thirdColor),
@@ -298,18 +280,13 @@ class _ProfileUserPageState extends State<ProfileUserPage> {
                   SizedBox(
                     height: h * 0.06,
                     child: TextField(
+                       readOnly: true,
                       onChanged: (value) => setState(() => password = value),
                       onSubmitted: (value) => setState(() => password = value),
                       decoration: InputDecoration(
                         contentPadding: const EdgeInsets.symmetric(
                             vertical: 10, horizontal: 20),
                         hintText: 'M',
-                        suffixIcon: firstnameT.text.isEmpty
-                            ? Container(width: 0)
-                            : IconButton(
-                                icon: const Icon(Icons.close),
-                                onPressed: () => firstnameT.clear(),
-                              ),
                         enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(
                               width: 1.5, color: AppColor().thirdColor),
@@ -342,6 +319,7 @@ class _ProfileUserPageState extends State<ProfileUserPage> {
                   SizedBox(
                     height: h * 0.06,
                     child: TextField(
+                       readOnly: true,
                       controller: phoneT,
                       onChanged: (value) => setState(() => password = value),
                       onSubmitted: (value) => setState(() => password = value),
@@ -349,12 +327,6 @@ class _ProfileUserPageState extends State<ProfileUserPage> {
                         contentPadding: const EdgeInsets.symmetric(
                             vertical: 10, horizontal: 20),
                         hintText: '7',
-                        suffixIcon: phoneT.text.isEmpty
-                            ? Container(width: 0)
-                            : IconButton(
-                                icon: const Icon(Icons.close),
-                                onPressed: () => phoneT.clear(),
-                              ),
                         enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(
                               width: 1.5, color: AppColor().thirdColor),
@@ -377,68 +349,21 @@ class _ProfileUserPageState extends State<ProfileUserPage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   CustomWidget(
-                    text: 'ແຂວງ',
+                    text: 'ທີ່ຢູ່',
                     fontSize: fontsize * 0.013,
                     fontWeight: FontWeight.w300,
                   ),
                   SizedBox(
                     height: h * 0.06,
                     child: TextField(
-                      controller: noteT,
+                       readOnly: true,
+                      controller: addressT,
                       onChanged: (value) => setState(() => password = value),
                       onSubmitted: (value) => setState(() => password = value),
                       decoration: InputDecoration(
                         contentPadding: const EdgeInsets.symmetric(
                             vertical: 10, horizontal: 20),
-                        hintText: 'ແຂວງ',
-                        suffixIcon: noteT.text.isEmpty
-                            ? Container(width: 0)
-                            : IconButton(
-                                icon: const Icon(Icons.close),
-                                onPressed: () => noteT.clear(),
-                              ),
-                        enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                              width: 1.5, color: AppColor().thirdColor),
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderSide:
-                              const BorderSide(width: 1.5, color: Colors.red),
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              SizedBox(
-                height: h * 0.01,
-              ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  CustomWidget(
-                    text: 'ເມືອງ',
-                    fontSize: fontsize * 0.013,
-                    fontWeight: FontWeight.w300,
-                  ),
-                  SizedBox(
-                    height: h * 0.06,
-                    child: TextField(
-                      controller: firstnameT,
-                      onChanged: (value) => setState(() => password = value),
-                      onSubmitted: (value) => setState(() => password = value),
-                      decoration: InputDecoration(
-                        contentPadding: const EdgeInsets.symmetric(
-                            vertical: 10, horizontal: 20),
-                        hintText: 'ເມືອງ',
-                        suffixIcon: firstnameT.text.isEmpty
-                            ? Container(width: 0)
-                            : IconButton(
-                                icon: const Icon(Icons.close),
-                                onPressed: () => firstnameT.clear(),
-                              ),
+                        hintText: 'ທີ່ຢູ່',
                         enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(
                               width: 1.5, color: AppColor().thirdColor),
@@ -468,19 +393,13 @@ class _ProfileUserPageState extends State<ProfileUserPage> {
                   SizedBox(
                     height: h * 0.06,
                     child: TextField(
-                      controller: lastnameT,
+                       readOnly: true,
+                      controller: villageT,
                       onChanged: (value) => setState(() => password = value),
                       onSubmitted: (value) => setState(() => password = value),
                       decoration: InputDecoration(
                         contentPadding: const EdgeInsets.symmetric(
                             vertical: 10, horizontal: 20),
-                        hintText: 'ບ້ານ',
-                        suffixIcon: lastnameT.text.isEmpty
-                            ? Container(width: 0)
-                            : IconButton(
-                                icon: const Icon(Icons.close),
-                                onPressed: () => lastnameT.clear(),
-                              ),
                         enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(
                               width: 1.5, color: AppColor().thirdColor),
@@ -497,21 +416,94 @@ class _ProfileUserPageState extends State<ProfileUserPage> {
                 ],
               ),
               SizedBox(
-                height: h * 0.02,
+                height: h * 0.01,
               ),
-              ButtonWidget(
-                text: 'ແກ້ໄຂ',
-                width: w,
-                height: ResponsiveWidget.isSmallScreen(context)
-                    ? h * 0.06
-                    : ResponsiveWidget.isMediumScreen(context)
-                        ? h * 0.07
-                        : h * 0.08,
-                borderRadius: 10.0,
-                backgroundcolor: AppColor().mainColor,
-                color: Colors.white,
-                fontSize: fontsize * 0.016,
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  CustomWidget(
+                    text: 'ເມືອງ',
+                    fontSize: fontsize * 0.013,
+                    fontWeight: FontWeight.w300,
+                  ),
+                  SizedBox(
+                    height: h * 0.06,
+                    child: TextField(
+                       readOnly: true,
+                      controller: districtT,
+                      onChanged: (value) => setState(() => password = value),
+                      onSubmitted: (value) => setState(() => password = value),
+                      decoration: InputDecoration(
+                        contentPadding: const EdgeInsets.symmetric(
+                            vertical: 10, horizontal: 20),
+                        hintText: 'ເມືອງ',
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                              width: 1.5, color: AppColor().thirdColor),
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide:
+                              const BorderSide(width: 1.5, color: Colors.red),
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
               ),
+              SizedBox(
+                height: h * 0.01,
+              ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  CustomWidget(
+                    text: 'ແຂວງ',
+                    fontSize: fontsize * 0.013,
+                    fontWeight: FontWeight.w300,
+                  ),
+                  SizedBox(
+                    height: h * 0.06,
+                    child: TextField(
+                       readOnly: true,
+                      controller: provinceT,
+                      onChanged: (value) => setState(() => password = value),
+                      onSubmitted: (value) => setState(() => password = value),
+                      decoration: InputDecoration(
+                        contentPadding: const EdgeInsets.symmetric(
+                            vertical: 10, horizontal: 20),
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                              width: 1.5, color: AppColor().thirdColor),
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide:
+                              const BorderSide(width: 1.5, color: Colors.red),
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              // SizedBox(
+              //   height: h * 0.02,
+              // ),
+              // ButtonWidget(
+              //   text: 'ແກ້ໄຂ',
+              //   width: w,
+              //   height: ResponsiveWidget.isSmallScreen(context)
+              //       ? h * 0.06
+              //       : ResponsiveWidget.isMediumScreen(context)
+              //           ? h * 0.07
+              //           : h * 0.08,
+              //   borderRadius: 10.0,
+              //   backgroundcolor: AppColor().mainColor,
+              //   color: Colors.white,
+              //   fontSize: fontsize * 0.016,
+              // ),
             ],
           );
         }),

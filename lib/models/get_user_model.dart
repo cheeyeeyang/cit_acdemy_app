@@ -4,7 +4,7 @@ class GetUserModel {
   String? lastname;
   String? bod;
   String? phone;
-  int? size;
+  String? size;
   int? number;
   String? address;
   int? villId;
@@ -14,6 +14,8 @@ class GetUserModel {
   int? roleId;
   String? note;
   String? status;
+  String? email;
+  String? emailVerifiedAt;
   String? createdAt;
   String? updatedAt;
   String? createdDate;
@@ -39,6 +41,8 @@ class GetUserModel {
       this.roleId,
       this.note,
       this.status,
+      this.email,
+      this.emailVerifiedAt,
       this.createdAt,
       this.updatedAt,
       this.createdDate,
@@ -64,6 +68,8 @@ class GetUserModel {
     roleId = json['role_id'];
     note = json['note'];
     status = json['status'];
+    email = json['email'];
+    emailVerifiedAt = json['email_verified_at'];
     createdAt = json['created_at'];
     updatedAt = json['updated_at'];
     createdDate = json['created_date'];
@@ -91,6 +97,8 @@ class GetUserModel {
     data['role_id'] = this.roleId;
     data['note'] = this.note;
     data['status'] = this.status;
+    data['email'] = this.email;
+    data['email_verified_at'] = this.emailVerifiedAt;
     data['created_at'] = this.createdAt;
     data['updated_at'] = this.updatedAt;
     data['created_date'] = this.createdDate;
